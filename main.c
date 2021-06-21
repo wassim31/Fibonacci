@@ -8,15 +8,28 @@
 
 unsigned long long int Fib[MAX];
 
-/* --------------- Calculate Fib[n] --------------- */
-unsigned long long int fib(int n)
+/* --------------- Calculate Fib[n] | recursive --------------- */
+unsigned long long int fib_recursive(int n)
 {
     if (n <= 1)
         return n;
     if (Fib[n] != 0)
         return Fib[n];
-    Fib[n] = fib(n - 1) + fib(n - 2);
+    Fib[n] = fib_recursive(n - 1) + fib_recursive(n - 2);
     return Fib[n];
+}
+
+/* --------------- Calculate Fib[n] | iterative --------------- */
+unsigned long long int fib_iterative(int n)
+{
+    unsigned long long int ans, b = 0, a = 1;
+    for (int i = 0; i < n - 1; i++)
+    {
+        ans = a + b;
+        b = a;
+        a = ans;
+    }
+    return ans;
 }
 
 int main()
@@ -31,5 +44,5 @@ int main()
         Fib[i] = 0;
 
     /* Printing the result */
-    printf("%llu", fib(n));
+    printf("%llu | %llu", fib_iterative(n), fib_recursive(n));
 }
