@@ -24,6 +24,8 @@ unsigned long long int fib_recursive(int n)
 /* --------------- Calculate Fib[n] | iterative --------------- */
 unsigned long long int fib_iterative(int n)
 {
+    if(n < 0)
+        return 0;
     unsigned long long int ans; // why declaring a and b as 64 bits variables
     unsigned char a = 1, b = 0;
     for (int i = 0; i < n - 1; i++)
